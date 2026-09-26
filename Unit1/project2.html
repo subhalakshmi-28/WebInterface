@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Profile Card</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f2f2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.container{
+    width:320px;
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+    text-align:center;
+}
+h2{
+    margin-bottom:20px;
+}
+input{
+    width:90%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+button{
+    width:95%;
+    padding:10px;
+    margin-top:10px;
+    background:#007bff;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+button:hover{
+    background:#0056b3;
+}
+.card{
+    display:none;
+    margin-top:20px;
+    padding:15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    text-align:left;
+    background:#fafafa;
+}
+.card h3{
+    text-align:center;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Student Profile Card</h2>
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="text" id="roll" placeholder="Enter Roll Number">
+    <input type="number" id="marks" placeholder="Enter Marks">
+    <button onclick="displayProfile()">Display Profile</button>
+    <div class="card" id="profileCard">
+        <h3>Student Profile</h3>
+        <p><b>Name :</b> <span id="showName"></span></p>
+        <p><b>Roll No :</b> <span id="showRoll"></span></p>
+        <p><b>Marks :</b> <span id="showMarks"></span></p>
+        <p><b>Grade :</b> <span id="showGrade"></span></p>
+    </div>
+</div>
+<script>
+function displayProfile(){
+    let name = document.getElementById("name").value;
+    let roll = document.getElementById("roll").value;
+    let marks = Number(document.getElementById("marks").value);
+    let grade;
+    if(marks >= 90){
+        grade = "A+";
+    }
+    else if(marks >= 80){
+        grade = "A";
+    }
+    else if(marks >= 70){
+        grade = "B";
+    }
+    else if(marks >= 60){
+        grade = "C";
+    }
+    else if(marks >= 50){
+        grade = "D";
+    }
+    else{
+        grade = "F";
+    }
+    document.getElementById("showName").innerHTML = name;
+    document.getElementById("showRoll").innerHTML = roll;
+    document.getElementById("showMarks").innerHTML = marks;
+    document.getElementById("showGrade").innerHTML = grade;
+    document.getElementById("profileCard").style.display = "block";
+}
+</script>
+
+</body>
+</html>

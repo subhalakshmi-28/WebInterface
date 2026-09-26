@@ -1,0 +1,92 @@
+.hobby-card {
+  --accent: #7c4dff;
+  position: relative;
+  width: 300px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px 24px 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.hobby-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--accent);
+}
+.hobby-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.28);
+}
+.hobby-icon-wrapper {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 15%, white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  border: 3px solid var(--accent);
+  transition: transform 0.35s ease;
+}
+.hobby-card:hover .hobby-icon-wrapper {
+  transform: rotate(-8deg) scale(1.08);
+}
+.hobby-icon {
+  font-size: 40px;
+  line-height: 1;
+}
+.hobby-card-body {
+  width: 100%;
+}
+.hobby-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #211f36;
+  margin-bottom: 4px;
+}
+.hobby-student {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.hobby-description {
+  font-size: 14.5px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  min-height: 60px;
+}
+.hobby-details {
+  list-style: none;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.hobby-details li {
+  font-size: 13.5px;
+  color: #3a3a3a;
+  background: #f6f5fb;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border-left: 3px solid var(--accent);
+}
+@media (max-width: 400px) {
+  .hobby-card {
+    width: 100%;
+  }
+}
