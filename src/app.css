@@ -1,0 +1,177 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f5f7fb;
+  color: #1f2937;
+}
+
+/* Main App */
+.app {
+  min-height: 100vh;
+  padding: 55px 30px 25px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.5px;
+}
+
+.header p {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Project Grid */
+.projects {
+  width: 1050px;
+  max-width: 100%;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Project Card */
+.project-card {
+  position: relative;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  padding: 24px;
+  min-height: 185px;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+
+  transition: 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.09);
+  border-color: #d1d5db;
+}
+
+/* Project Number */
+.number {
+  display: inline-block;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  color: #2563eb;
+  background: #eff6ff;
+
+  padding: 5px 9px;
+  border-radius: 6px;
+
+  margin-bottom: 14px;
+}
+
+/* Project Title */
+.project-card h2 {
+  margin: 0 0 9px;
+
+  font-size: 19px;
+  font-weight: 650;
+
+  color: #111827;
+}
+
+/* Description */
+.description {
+  margin: 0 0 14px;
+
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Technology */
+.technology {
+  margin: 0 0 20px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  color: #4f46e5;
+}
+
+/* View Button */
+.view-btn {
+  display: inline-block;
+
+  padding: 8px 15px;
+
+  background: #2563eb;
+  color: #ffffff;
+
+  text-decoration: none;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  transition: 0.2s ease;
+}
+
+.view-btn:hover {
+  background: #1d4ed8;
+}
+
+/* Footer */
+footer {
+  width: 1050px;
+  max-width: 100%;
+
+  margin: 45px auto 0;
+  padding-top: 20px;
+
+  border-top: 1px solid #e5e7eb;
+
+  text-align: center;
+
+  color: #9ca3af;
+  font-size: 11px;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .app {
+    padding: 35px 18px 20px;
+  }
+
+  .header {
+    margin-bottom: 30px;
+  }
+
+  .header h1 {
+    font-size: 30px;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .project-card {
+    min-height: auto;
+  }
+}

@@ -1,0 +1,89 @@
+name: Deploy WebInterface
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build main website
+        run: |
+          npm ci
+          npm run build
+
+      - name: Prepare website
+        run: |
+          mkdir -p site
+          cp -a dist/. site/
+
+          for unit in Unit1 Unit2 Unit3 Unit4 Unit5; do
+            if [ -d "$unit" ]; then
+              mkdir -p "site/$unit"
+              rsync -a \
+                --exclude='node_modules/' \
+                --exclude='dist/' \
+                --exclude='.git/' \
+                "$unit/" "site/$unit/"
+            fi
+          done
+
+      - name: Build unit projects
+        run: |
+          while IFS= read -r package; do
+            dir=$(dirname "$package")
+
+            if [ "$dir" = "." ]; then
+              continue
+            fi
+
+            echo "Building $dir"
+
+            if [ -f "$dir/package-lock.json" ]; then
+              (cd "$dir" && npm ci)
+            else
+              (cd "$dir" && npm install)
+            fi
+
+            (cd "$dir" && npm run build)
+
+            mkdir -p "site/$dir"
+            cp -a "$dir/dist/." "site/$dir/"
+
+          done < <(
+            find Unit1 Unit2 Unit3 Unit4 Unit5 \
+              -type d -name node_modules -prune -o \
+              -name package.json -print 2>/dev/null
+          )
+
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy website
+        uses: actions/deploy-pages@v4
